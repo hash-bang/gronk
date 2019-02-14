@@ -15,3 +15,11 @@ describe('Simple tests', ()=> {
 		expect(gronk({foo: {bar: {baz: [1, 2, {quz: 'Quz!'}]}}}, {dotted: false})).to.equal('foo = {}\nfoo.bar = {}\nfoo.bar.baz = []\nfoo.bar.baz[0] = 1\nfoo.bar.baz[1] = 2\nfoo.bar.baz[2] = {}\nfoo.bar.baz[2].quz = "Quz!"');
 	});
 });
+
+describe('Complex object tests', ()=> {
+
+	it('should handle builtin types', ()=> {
+		expect(gronk({foo: new Set([1, 2, 3])}, {baseTypes: false})).to.equal('foo = new Set()\nfoo.0 = 1\nfoo.1 = 2\nfoo.2 = 3');
+	});
+
+});
