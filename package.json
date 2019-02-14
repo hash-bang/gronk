@@ -1,0 +1,32 @@
+{
+  "name": "gronk",
+  "version": "0.0.0",
+  "description": "Updated version of Gron which makes JSON greppable, now also works as a Node module",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hash-bang/gronk.git"
+  },
+  "keywords": [
+    "gron",
+    "json",
+    "grep",
+    "greppable"
+  ],
+  "author": "Matt Carter <m@ttcarter.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hash-bang/gronk/issues"
+  },
+  "homepage": "https://github.com/hash-bang/gronk#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}
