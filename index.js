@@ -1,14 +1,17 @@
 var _ = require('lodash');
+var readable = require('@momsfriendlydevco/readable');
 
 /**
 * Accept a complex data object and return a dotted notation path + values
 * @param {*} data The data to process
 * @param {Object} [options] Additional options
 * @param {string} [options.want='string'] How to return the output, values are 'array', 'object' and 'string'
+* @param {boolean} [options.dotted=true] Use dotted notation rather than JS notation
 * @param {string} [options.stubObject="{}"] How to render objects, set to falsy to omit
 * @param {string} [options.stubArray="[]"] How to render arrays, set to falsy to omit
 * @param {boolean} [options.detectRecursion=true] If recursion is detected, stop processing. Disable this only if you are absolutely sure the input is not circular
 * @param {boolean} [options.baseTypes=true] Use only the base JavaScript types 'Object', 'Array', string and number, if disabled the type system lookup gets used instead
+* @param {boolean} [options.typeDetail=false] Use full type values, rather than abbreivating them as a digest (If enabled buffers are output as full Base64 rather than just their length)
 * @param {function} [options.format] Formatting function to use when processing each 'line', only used when want is 'array' or 'string'
 * @param {function} [options.formatPath] Formatting function to use to encode the path portion of each item
 * @param {function} [options.formatData] Formatting function to use to encode the data portion of each item
@@ -62,7 +65,7 @@ module.exports = function(data, options) {
 
 			var nodeType = settings.types.find(typeCheck => typeCheck.detect(data));
 			if (!nodeType) return; // Nothing found - skip
-			var nodeValue = _.isString(nodeType.value) ? nodeType.value : nodeType.value(data, path);
+			var nodeValue = _.isString(nodeType.value) ? nodeType.value : nodeType.value(data, path, settings);
 
 			// Append this item value
 			if (path.length == 0) { // First item
@@ -108,6 +111,7 @@ module.exports.defaults = {
 	types: [
 		{id: 'array', detect: v => _.isArray(v), value: v => '[]', iterator: (v, cb) => v.forEach(cb)},
 		{id: 'date', detect: v => v instanceof Date, value: v => `new Date("${v.toString()}")`},
+		{id: 'buffer', detect: v => v instanceof Buffer, value: (v, p, settings) => settings.typeDetail ? `new Buffer("${v.toString('base64')}")` : `new Buffer([${readable.fileSize(v.length)}])`},
 		{id: 'function', detect: v => typeof v == 'function', value: '[Function]'},
 		{id: 'infinity', detect: v => v === Infinity, value: 'Infinity'},
 		{id: '-infinity', detect: v => v === -Infinity, value: '-Infinity'},

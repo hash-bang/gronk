@@ -48,18 +48,20 @@ Accept a complex data object and return a dotted notation path + values.
 
 Valid options are:
 
-| Key               | Type       | Default    | Description                                                                                                                           |
-|-------------------|------------|------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| `want`            | `string`   | `'string'` | How to return the output, values are `'array'`, `'object'` and `'string'`                                                             |
-| `stubArray`       | `string`   | `'[]'`     | How to show the marker for an array entry, set this to falsy to disable                                                               |
-| `stubObject`      | `string`   | `'{}'`     | How to show the marker for an object entry, set this to falsy to disable                                                              |
-| `detectRecursion` | `boolean`  | `true`     | If recursion is detected, stop processing. Disable this only if you are absolutely sure the input is not circular                     |
-| `baseTypes`       | `boolean`  | `true`     | Use the inbuilt type system which supports only Object, Array, String and Number if disabled the type system lookup gets used instead |
-| `format`          | `function` | See code   | Formatting function to use when processing each 'line', only used when want is 'array' or 'string'                                    |
-| `formatPath`      | `function` | See code   | Formatting function to use to encode the path portion of each item                                                                    |
-| `formatData`      | `function` | See code   | Formatting function to use to encode the data portion of each item                                                                    |
-| `formatString`    | `function` | See code   | Used when want is 'string' to format a processed string, by default this just adds '\n' to the end                                    |
-| `types`           | `array`    | See code   | Defines the type detection + serialization system when `{baseTypes: false}`                                                           |
+| Key               | Type       | Default    | Description                                                                                                                                  |
+|-------------------|------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| `want`            | `string`   | `'string'` | How to return the output, values are `'array'`, `'object'` and `'string'`                                                                    |
+| `dotted`          | `boolean`  | `true`     | Use dotted notation rather than JS notation                                                                                                  |
+| `stubArray`       | `string`   | `'[]'`     | How to show the marker for an array entry, set this to falsy to disable                                                                      |
+| `stubObject`      | `string`   | `'{}'`     | How to show the marker for an object entry, set this to falsy to disable                                                                     |
+| `detectRecursion` | `boolean`  | `true`     | If recursion is detected, stop processing. Disable this only if you are absolutely sure the input is not circular                            |
+| `baseTypes`       | `boolean`  | `true`     | Use the inbuilt type system which supports only Object, Array, String and Number if disabled the type system lookup gets used instead        |
+| `typeDetail`      | `boolean`  | `false`    | Use full type values, rather than abbreivating them as a digest (If enabled buffers are output as full Base64 rather than just their length) |
+| `format`          | `function` | See code   | Formatting function to use when processing each 'line', only used when want is 'array' or 'string'                                           |
+| `formatPath`      | `function` | See code   | Formatting function to use to encode the path portion of each item                                                                           |
+| `formatData`      | `function` | See code   | Formatting function to use to encode the data portion of each item                                                                           |
+| `formatString`    | `function` | See code   | Used when want is 'string' to format a processed string, by default this just adds '\n' to the end                                           |
+| `types`           | `array`    | See code   | Defines the type detection + serialization system when `{baseTypes: false}`                                                                  |
 
 
 gronk.defaults

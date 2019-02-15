@@ -27,6 +27,8 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
+    "@momsfriendlydevco/readable": "^1.1.5",
+    "commander": "^2.19.0",
     "lodash": "^4.17.11"
   }
 }

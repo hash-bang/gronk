@@ -22,4 +22,9 @@ describe('Complex object tests', ()=> {
 		expect(gronk({foo: new Set([1, 2, 3])}, {baseTypes: false})).to.equal('foo = new Set()\nfoo.0 = 1\nfoo.1 = 2\nfoo.2 = 3');
 	});
 
+	it('should show both digest and full types (buffers)', ()=> {
+		expect(gronk({foo: new Buffer.alloc(6, 'buffer')}, {baseTypes: false, typeDetail: false})).to.equal('foo = new Buffer([6b])');
+		expect(gronk({foo: new Buffer.alloc(6, 'buffer')}, {baseTypes: false, typeDetail: true})).to.equal('foo = new Buffer("YnVmZmVy")');
+	});
+
 });
