@@ -4,6 +4,7 @@ Updated version of [Gron](https://github.com/fgribreau/gron) which makes JSON gr
 
 Unlike the Gron package, this version exports a function for use within code rather than just a binary tool.
 
+**As a module within Node:**
 ```javascript
 gronk({
 	foo: {
@@ -28,9 +29,33 @@ foo.bar.baz.2 = {}
 foo.bar.baz.2.quz = "Quz!"
 ```
 
+**As a command line tool:**
+
+```
+> cat test/data/complex.json | gronk
+foo = "Foo!"
+bar = []
+bar.0 = 1
+bar.1 = 2
+bar.2 = {}
+bar.2.baz = []
+bar.2.baz.0 = 1
+bar.2.baz.1 = 2
+bar.2.baz.2 = 3
+quz = []
+quz.0 = []
+quz.0.0 = 10
+quz.0.1 = 20
+quz.0.2 = 30
+quz.1 = 40
+flarp = {}
+flarp.boink = "Boink!"
+```
+
+
 Differences from Gron
 ----------------------
-This module has a few small differences from the standard Gron binary:
+This module has a few differences from the standard Gron binary:
 
 1. Path formatting uses dotted notation instead of JS notation. For example `foo.1.bar.2.baz` instead of `foo[1].bar[2].baz`. If you would like this format set `{dotted: true}` in the options.
 2. Recursion detection (disable with `{detectRecursion: false}` if you really need to)
