@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Updated version of Gron which makes JSON greppable, now also works as a Node module",
   "main": "index.js",
+  "bin": {
+    "gronk": "./app.js"
+  },
   "scripts": {
     "test": "mocha"
   },
